@@ -61,6 +61,8 @@ export default {
 | detail | 详情模式，表单不可编辑 | boolean | true/false | false |
 | rangeSeparator | 时间范围组件分隔符 | string |        | 至 |
 | column | 表单域列表，详细如下 | array |        | [] |
+| submitText | 表单提交按钮文字 | string |        | 提交 |
+| resetText | 表单提交按钮文字 | string |        | 重置 |
 
 #### column
 
