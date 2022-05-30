@@ -568,14 +568,16 @@ export default {
   },
   methods: {
     initForm(isClear) {
+      const initObj = {}
       this.option.column?.forEach(item => {
         if (item.type === 'checkbox') {
           let val = isClear ? [] : this.model[item.name]
-          this.$emit('update:model', {
-            ...this.model,
-            [item.name]: val || []
-          })
+          initObj[item.name] = val || []
         }
+      })
+      this.$emit('update:model', {
+        ...this.model,
+        ...initObj
       })
     },
     submitForm(formName) {
@@ -632,7 +634,8 @@ export default {
       if (src) {
         const date = new Date(src)
         value = getWeekNumber(date)
-        const year = new Date(date.getTime() - 3 * 24 * 60 * 60 * 1000).getFullYear()
+        // 当前周 周四的年份
+        const year = new Date(date.getTime() + (4 - date.getDay()) * 24 * 60 * 60 * 1000).getFullYear()
         label = `${year}w${value > 9 ? value : '0' + value}`
       }
       return {
